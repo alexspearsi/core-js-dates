@@ -178,18 +178,9 @@ function isDateInPeriod(date, period) {
 function formatDate(date) {
   const year = new Date(date).getFullYear();
   const month = new Date(date).getMonth() + 1;
-  const dateOfMonth = new Date(date).getUTCDate();
+  const dateOfMonth = new Date(date).getDate();
 
-  const hoursCheck = new Date(date).getHours();
-  let hours;
-
-  if (hoursCheck === 1) {
-    hours = 23;
-  } else if (hoursCheck === 0) {
-    hours = 22;
-  } else {
-    hours = hoursCheck - 2;
-  }
+  const hours = new Date(date).getHours();
 
   const minutes = new Date(date).getMinutes();
   const seconds = new Date(date).getSeconds();
