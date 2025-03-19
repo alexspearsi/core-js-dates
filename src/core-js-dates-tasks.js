@@ -70,8 +70,25 @@ function getDayName(date) {
  * Date('2024-02-13T00:00:00Z') => Date('2024-02-16T00:00:00Z')
  * Date('2024-02-16T00:00:00Z') => Date('2024-02-23T00:00:00Z')
  */
-function getNextFriday(/* date */) {
-  throw new Error('Not implemented');
+function getNextFriday(date) {
+  switch (date.getDay()) {
+    case 0:
+      return new Date(+date + 1000 * 3600 * 24 * 5);
+    case 1:
+      return new Date(+date + 1000 * 3600 * 24 * 4);
+    case 2:
+      return new Date(+date + 1000 * 3600 * 24 * 3);
+    case 3:
+      return new Date(+date + 1000 * 3600 * 24 * 2);
+    case 4:
+      return new Date(+date + 1000 * 3600 * 24 * 1);
+    case 5:
+      return new Date(+date + 1000 * 3600 * 24 * 7);
+    case 6:
+      return new Date(+date + 1000 * 3600 * 24 * 6);
+    default:
+      return 'the date is not found';
+  }
 }
 
 /**
