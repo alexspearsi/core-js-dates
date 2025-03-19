@@ -175,8 +175,85 @@ function isDateInPeriod(date, period) {
  * '1999-01-05T02:20:00.000Z' => '1/5/1999, 2:20:00 AM'
  * '2010-12-15T22:59:00.000Z' => '12/15/2010, 10:59:00 PM'
  */
-function formatDate(/* date */) {
-  throw new Error('Not implemented');
+function formatDate(date) {
+  const year = new Date(date).getFullYear();
+  const month = new Date(date).getMonth() + 1;
+  const dateOfMonth = new Date(date).getUTCDate();
+
+  const hoursCheck = new Date(date).getHours();
+  let hours;
+
+  if (hoursCheck === 1) {
+    hours = 23;
+  } else if (hoursCheck === 0) {
+    hours = 22;
+  } else {
+    hours = hoursCheck - 2;
+  }
+
+  const minutes = new Date(date).getMinutes();
+  const seconds = new Date(date).getSeconds();
+  let partOfTheDay;
+  let hourTo12Format;
+  switch (hours) {
+    case 0:
+      hourTo12Format = 12;
+      partOfTheDay = 'AM';
+      break;
+    case 23:
+      hourTo12Format = 11;
+      partOfTheDay = 'PM';
+      break;
+    case 22:
+      hourTo12Format = 10;
+      partOfTheDay = 'PM';
+      break;
+    case 21:
+      hourTo12Format = 9;
+      partOfTheDay = 'PM';
+      break;
+    case 20:
+      hourTo12Format = 8;
+      partOfTheDay = 'PM';
+      break;
+    case 19:
+      hourTo12Format = 7;
+      partOfTheDay = 'PM';
+      break;
+    case 18:
+      hourTo12Format = 6;
+      partOfTheDay = 'PM';
+      break;
+    case 17:
+      hourTo12Format = 5;
+      partOfTheDay = 'PM';
+      break;
+    case 16:
+      hourTo12Format = 4;
+      partOfTheDay = 'PM';
+      break;
+    case 15:
+      hourTo12Format = 3;
+      partOfTheDay = 'PM';
+      break;
+    case 14:
+      hourTo12Format = 2;
+      partOfTheDay = 'PM';
+      break;
+    case 13:
+      hourTo12Format = 1;
+      partOfTheDay = 'PM';
+      break;
+    case 12:
+      hourTo12Format = 12;
+      partOfTheDay = 'PM';
+      break;
+    default:
+      hourTo12Format = hours;
+      partOfTheDay = 'AM';
+  }
+
+  return `${month}/${dateOfMonth}/${year}, ${hourTo12Format}:${minutes.toString().padStart(2, 0)}:${seconds.toString().padStart(2, 0)} ${partOfTheDay}`;
 }
 
 /**
