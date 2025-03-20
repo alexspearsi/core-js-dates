@@ -176,14 +176,14 @@ function isDateInPeriod(date, period) {
  * '2010-12-15T22:59:00.000Z' => '12/15/2010, 10:59:00 PM'
  */
 function formatDate(date) {
-  const year = new Date(date).getFullYear();
-  const month = new Date(date).getMonth() + 1;
-  const dateOfMonth = new Date(date).getDate();
+  const year = new Date(date).getUTCFullYear();
+  const month = new Date(date).getUTCMonth() + 1;
+  const dateOfMonth = new Date(date).getUTCDate();
 
-  const hours = new Date(date).getHours();
+  const hours = new Date(date).getUTCHours();
 
-  const minutes = new Date(date).getMinutes();
-  const seconds = new Date(date).getSeconds();
+  const minutes = new Date(date).getUTCMinutes();
+  const seconds = new Date(date).getUTCSeconds();
   let partOfTheDay;
   let hourTo12Format;
   switch (hours) {
