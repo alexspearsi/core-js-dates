@@ -259,8 +259,31 @@ function formatDate(date) {
  * 12, 2023 => 10
  * 1, 2024 => 8
  */
-function getCountWeekendsInMonth(/* month, year */) {
-  throw new Error('Not implemented');
+function getCountWeekendsInMonth(month, year) {
+  const monthsStartFromZero = month - 1;
+
+  const obj = {
+    0: 'Sunday',
+    1: 'Monday',
+    2: 'Tuesday',
+    3: 'Wednesday',
+    4: 'Thursday',
+    5: 'Friday',
+    6: 'Saturday',
+  };
+  let counter = 0;
+
+  for (let i = 1; i <= 31; i += 1) {
+    const date = new Date(year, monthsStartFromZero, i);
+    if (date.getMonth() === monthsStartFromZero)
+      if (
+        obj[date.getDay()] === 'Sunday' ||
+        obj[date.getDay()] === 'Saturday'
+      ) {
+        counter += 1;
+      }
+  }
+  return counter;
 }
 
 /**
